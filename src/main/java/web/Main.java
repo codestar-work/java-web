@@ -109,4 +109,22 @@ public class Main {
 			return "new";
 		}
 	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/new")
+	String saveNewTopic(HttpSession session, String title,
+			String detail) {
+		Member m = (Member)session.getAttribute("member");
+		if (m == null) {
+			return "redirect:/login";
+		} else {
+			Topic t  = new Topic();
+			t.user   = m.id;
+			t.title  = title;
+			t.detail = detail;
+			Session database = factory.openSession();
+			database.save(t);
+			database.close();
+			return "redirect:/shop";
+		}
+	}
 }

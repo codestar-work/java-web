@@ -12,6 +12,7 @@ create table member(
 
 create table topic(
   id       serial,
+  user     bigint,
   title    varchar(1000),
   detail   varchar(10000)
 );

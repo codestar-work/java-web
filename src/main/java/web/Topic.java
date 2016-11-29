@@ -5,6 +5,7 @@ import javax.persistence.*;
 class Topic {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	long id;
+	long user;
 	String title;
 	String detail;
 }
