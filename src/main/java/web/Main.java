@@ -99,4 +99,14 @@ public class Main {
 		} catch (Exception e) {}
 		return result;
 	}
+	
+	@RequestMapping("/new")
+	String showNewPage(HttpSession session) {
+		Member m = (Member)session.getAttribute("member");
+		if (m == null) {
+			return "redirect:/login";
+		} else {
+			return "new";
+		}
+	}
 }
