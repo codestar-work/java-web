@@ -37,6 +37,11 @@ public class Main {
 		s.close();
 		return "index";
 	}
+	
+	@RequestMapping("/login")
+	String showLoginPage() {
+		return "login";
+	}
 
 	@Autowired
 	SessionFactory factory;
@@ -44,8 +49,9 @@ public class Main {
 	String encode(String s) {
 		String result = "";
 		try {
-			java.security.MessageDigest digest = java.security.MessageDigest.
-				getInstance("SHA-256");
+			java.security.MessageDigest digest = 
+					java.security.MessageDigest.
+					getInstance("SHA-256");
 			byte[] hash = digest.digest(s.getBytes("UTF-8"));
 			for (int i = 0; i < hash.length; i++) {
 				String hex = Integer.toHexString(0xff & hash[i]);
