@@ -7,14 +7,19 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class Main {
 
-  @RequestMapping("/")
-  String showHome() {
-    return "index";
-  }
+	@RequestMapping("/")
+	String showHome() {
+	  return "index";
+	}
 
-  @RequestMapping("/test") @ResponseBody
-  int test() {
-    return 555;
-  }
+	@RequestMapping("/test") @ResponseBody
+	int test() {
+	  return 555;
+	}
+
+	@RequestMapping("/register")
+	String showRegisterPage() {
+		return "register";
+	}
 
 }
