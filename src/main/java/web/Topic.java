@@ -8,4 +8,6 @@ class Topic {
 	long user;
 	String title;
 	String detail;
+	public String getTitle() { return title; }
+	public String getDetail() { return detail; }
 }

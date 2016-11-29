@@ -127,4 +127,14 @@ public class Main {
 			return "redirect:/shop";
 		}
 	}
+	
+	@RequestMapping("/list")
+	String listAllTopic(Model model) {
+		Session database = factory.openSession();
+		Query query = database.createQuery("from Topic");
+		List list = query.list();
+		model.addAttribute("topic", list);
+		database.close();
+		return "list";
+	}
 }
