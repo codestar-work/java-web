@@ -9,3 +9,10 @@ create table member(
   email    varchar(100) unique not null,
   password varchar(2048) not null
 );
+
+create table topic(
+  id       serial,
+  title    varchar(1000),
+  detail   varchar(10000)
+);
+
