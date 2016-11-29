@@ -2,7 +2,7 @@ package web;
 import javax.persistence.*;
 
 @Entity @Table(name="topic")
-class Topic {
+public class Topic {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	long id;
 	long user;

@@ -129,12 +129,18 @@ public class Main {
 	}
 	
 	@RequestMapping("/list")
-	String listAllTopic(Model model) {
+	String listAllTopic(Model model, HttpSession session) {
 		Session database = factory.openSession();
 		Query query = database.createQuery("from Topic");
-		List list = query.list();
-		model.addAttribute("topic", list);
+		model.addAttribute("topic", query.list());
 		database.close();
+		
+		Member member = (Member)session.getAttribute("member");
+		String name = "Unknown";
+		if (member != null) {
+			name = member.name;
+		}
+		model.addAttribute("name", name);
 		return "list";
 	}
 }
