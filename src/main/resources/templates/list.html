@@ -7,9 +7,9 @@
 </head>
 <body>
 	<div class="container">
-		Hello ${name}
+		<h1>List of all post</h1>
 		<#list topic as t>
-			${t.title}
+			<a href="/view/${t.id}">${t.title}</a>
 		</#list>
 	</div>
 </body>
