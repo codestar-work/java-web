@@ -1,10 +1,12 @@
 package web;
+import java.io.*;
 import java.util.*;
 import org.hibernate.*;
 import javax.servlet.http.*;
 import org.springframework.ui.*;
 import org.springframework.boot.*;
 import org.springframework.stereotype.*;
+import org.springframework.web.multipart.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.*;
 
@@ -112,18 +114,36 @@ public class Main {
 	
 	@RequestMapping(method=RequestMethod.POST, value="/new")
 	String saveNewTopic(HttpSession session, String title,
-			String detail) {
+			String detail, MultipartFile photo) {
 		Member m = (Member)session.getAttribute("member");
 		if (m == null) {
 			return "redirect:/login";
 		} else {
+			String name = UUID.randomUUID() + ".jpg";
+			
 			Topic t  = new Topic();
 			t.user   = m.id;
 			t.title  = title;
 			t.detail = detail;
+			if (!photo.isEmpty()) {
+				t.photo = name;
+			}
 			Session database = factory.openSession();
 			database.save(t);
 			database.close();
+			
+			if (!photo.isEmpty()) {
+				name = "./src/main/resources/public/photo/" + name;
+				java.io.File f = new java.io.File(name);
+				try {
+					byte[] buffer = photo.getBytes();
+					BufferedOutputStream bos = new BufferedOutputStream(
+							new FileOutputStream(name));
+					bos.write(buffer);
+					bos.close();
+				} catch (Exception e) { }
+			}
+			
 			return "redirect:/shop";
 		}
 	}

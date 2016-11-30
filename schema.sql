@@ -14,6 +14,8 @@ create table topic(
   id       serial,
   user     bigint,
   title    varchar(1000),
-  detail   varchar(10000)
+  detail   varchar(10000),
+  photo    varchar(1000)
 );
 
+-- alter table topic add photo varchar(1000);

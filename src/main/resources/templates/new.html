@@ -10,7 +10,7 @@
 <body>
 	<div class="container">
 		<h1>New Post</h1>
-		<form method="post">
+		<form method="post" enctype="multipart/form-data">
 			<input name="title"
 				   class="form-control"
 				   placeholder="Title"
@@ -19,6 +19,7 @@
 					  class="form-control"
 					  placeholder="Detail"
 					  rows="8"></textarea>
+			<input type="file" accept="image/*" name="photo">
 			<button type="submit"
 					class="btn btn-primary"
 					>Post</button>

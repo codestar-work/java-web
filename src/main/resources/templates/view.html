@@ -11,7 +11,9 @@
 		<p>
 			${topic.detail}
 		</p>
-
+		<#if topic.photo?? >
+			<img src="/photo/${topic.photo}" >
+		</#if>
 	</div>
 </body>
 </html>

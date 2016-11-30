@@ -8,7 +8,9 @@ public class Topic {
 	long user;
 	String title;
 	String detail;
-	public long   getId() { return id; }
-	public String getTitle() { return title; }
+	String photo;
+	public long   getId()     { return id;     }
+	public String getTitle()  { return title;  }
 	public String getDetail() { return detail; }
+	public String getPhoto()  { return photo;  }
 }
