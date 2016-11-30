@@ -182,4 +182,10 @@ public class Main {
 		}
 		return "view";
 	}
+	
+	@RequestMapping("/logout")
+	String doLogout(HttpSession session) {
+		session.removeAttribute("member");
+		return "redirect:/";
+	}
 }
