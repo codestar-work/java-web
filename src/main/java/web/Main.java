@@ -143,4 +143,23 @@ public class Main {
 		model.addAttribute("name", name);
 		return "list";
 	}
+	
+	@RequestMapping("/view/{id}")
+	String view(Model model, @PathVariable long id) {
+		Session database = factory.openSession();
+		Query query      = database.createQuery(
+				"from Topic where id = :x");
+		query.setParameter("x", id);
+		List list = query.list();
+		if (list.size() > 0) {
+			model.addAttribute("topic", list.get(0));
+		} else {
+			Topic t = new Topic();
+			t.id     = 0;
+			t.title  = "Not Found";
+			t.detail = "Not Found";
+			model.addAttribute("topic", t);
+		}
+		return "view";
+	}
 }
